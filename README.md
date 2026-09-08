@@ -9,7 +9,7 @@ This application implements a live remote heart-rate estimation pipeline that us
 Key features:
 - Live camera capture pipeline
 - Face detection using a FOMO model
-- Heart-rate estimation using the RhythmFormer (TSCAN) model
+- Heart-rate estimation using the RhythmFormer model
 - Optimized for Alif Semiconductor devices
 
 ## Prerequisites
@@ -56,7 +56,7 @@ cp <trustpulse>/tflm/RhythmFormerModel.hpp <trustpulse>/tflm/RhythmFormerModel.c
 
 # Prepare the Model Files
 
-RhythmFormer needs **two** models in place: the TSCAN heart-rate model and the
+RhythmFormer needs **two** models in place: the RhythmFormer heart-rate model and the
 FOMO face-detection model.
 
 ### On Linux/macOS:
@@ -64,21 +64,21 @@ FOMO face-detection model.
 First, ensure the target directory exists:
 
 ```bash
-mkdir -p ${MLEK_ROOT}/resources/rhythmformer
+mkdir -p ${MLEK_ROOT}/resources_downloaded/rhythmformer
 ```
 
-Copy the TSCAN model (use the Vela-compiled variant for an Ethos-U build):
+Copy the RhythmFormer model (use the Vela-compiled variant for an Ethos-U build):
 
 ```bash
-cp <trustpulse>/TSCAN_fd10_72x72_efficient_int8_vela_Z256.tflite \
-   ${MLEK_ROOT}/resources/rhythmformer/
+cp <trustpulse>/RhythmFormer_fd10_72x72_efficient_int8_vela_Z256.tflite \
+   ${MLEK_ROOT}/resources_downloaded/rhythmformer/
 ```
 
 Copy the FOMO face-detection model to:
 
 ```bash
 cp <trustpulse>/fomo-face-detection-72x72-int8_vela.tflite \
-   ${MLEK_ROOT}/resources/rhythmformer/
+   ${MLEK_ROOT}/resources_downloaded/rhythmformer/
 ```
 
 ---
@@ -107,13 +107,12 @@ cmake  -B build_alif_RhythmFormer -DTARGET_PLATFORM=alif \
  -DOSPI_RAM_SUPPORT=ON \
  -DUSB_UVC_ENABLED=OFF \
  -DALIF_CAMERA_ENABLED=ON \
- -Dalif_rhythmformer_CAMERA_WIDTH=240 \
- -Dalif_rhythmformer_CAMERA_HEIGHT=240 \
- -Dalif_rhythmformer_FOMO_MODEL_PATH=./fomo-face-detection-72x72-int8_vela.tflite \
- -Dalif_rhythmformer_FACE_DETECT_CONF_THRESHOLD=0.04 \
- -Dalif_rhythmformer_ENABLE_MOTION_DETECTOR=OFF \
- -Dalif_rhythmformer_RHYTHMFORMER_CALIBRATION_SECONDS=5.0 \
- -Dalif_rhythmformer_RHYTHMFORMER_SESSION_SECONDS=5.0 ..
+ -Dalif_RhythmFormer_CAMERA_WIDTH=240 \
+ -Dalif_RhythmFormer_CAMERA_HEIGHT=240 \
+ -Dalif_RhythmFormer_FOMO_MODEL_PATH=./fomo-face-detection-72x72-int8_vela.tflite \
+ -Dalif_RhythmFormer_FACE_DETECT_CONF_THRESHOLD=0.04 \
+ -Dalif_RhythmFormer_RHYTHMFORMER_CALIBRATION_SECONDS=5.0 \
+ -Dalif_RhythmFormer_RHYTHMFORMER_SESSION_SECONDS=10.0 ..
 ```
 
 
