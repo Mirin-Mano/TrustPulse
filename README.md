@@ -98,7 +98,7 @@ cmake  -B build_alif_RhythmFormer -DTARGET_PLATFORM=alif \
  -DUSE_CASE_BUILD=alif_RhythmFormer \
  -DTARGET_SUBSYSTEM=RTSS-HP \
  -DTARGET_BOARD=DevKit-e8 \
- -DCMAKE_TOOLCHAIN_FILE=../scripts/cmake/toolchains/bare-metal-gcc.cmake \
+ -DCMAKE_TOOLCHAIN_FILE=./scripts/cmake/toolchains/bare-metal-gcc.cmake \
  -DGLCD_UI=ON \
  -DLINKER_SCRIPT_NAME=RTSS-HP \
  -DCMAKE_BUILD_TYPE=Release -DMLEK_LOG_LEVEL=MLEK_LOG_LEVEL_INFO \
@@ -112,7 +112,7 @@ cmake  -B build_alif_RhythmFormer -DTARGET_PLATFORM=alif \
  -Dalif_RhythmFormer_FOMO_MODEL_PATH=./fomo-face-detection-72x72-int8_vela.tflite \
  -Dalif_RhythmFormer_FACE_DETECT_CONF_THRESHOLD=0.04 \
  -Dalif_RhythmFormer_RHYTHMFORMER_CALIBRATION_SECONDS=5.0 \
- -Dalif_RhythmFormer_RHYTHMFORMER_SESSION_SECONDS=10.0 ..
+ -Dalif_RhythmFormer_RHYTHMFORMER_SESSION_SECONDS=10.0 
 ```
 
 
